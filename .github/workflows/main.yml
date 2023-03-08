@@ -28,6 +28,16 @@ jobs:
     - name: Build and publish .NET app
       working-directory: ./backend/src
       run: dotnet publish -c Release -o ./publish
+      
+    - name: .NET Tests
+      working-directory: ./backend/src
+      run: dotnet test --logger trx --results-directory TestResults
+      
+    - name: .NET test coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: published-files
+        path: bin/Release/net5.0
         
     - name: Setup Node.js
       uses: actions/setup-node@v3
