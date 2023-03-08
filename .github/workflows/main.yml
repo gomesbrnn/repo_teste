@@ -33,11 +33,17 @@ jobs:
       working-directory: ./backend/src
       run: dotnet test --logger trx --results-directory TestResults
       
-    - name: .NET test coverage report
+    - name: Publish test artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: published-files
-        path: bin/Release/net5.0
+        name: test-results
+        path: TestResults/
+        
+    - name: Upload test coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: coverage/
         
     - name: Setup Node.js
       uses: actions/setup-node@v3
