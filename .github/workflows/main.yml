@@ -18,22 +18,27 @@ jobs:
       with:
         dotnet-version: '5.0.x'
 
-    - name: Restore dependencies
+    - name: Restore .NET dependencies
       working-directory: ./backend/src
       run: dotnet restore
       
-    - name: Build and publish
+    - name: Build and publish .NET app
       working-directory: ./backend/src
       run: dotnet publish -c Release -o ./publish
         
-    - name: Install dependencies
-      working-directory: ./frontend/ProEventos-App
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+      
+    - name: Install Angular dependencies
       run: npm install
 
-    - name: Build application
-      working-directory: ./frontend/ProEventos-App
-      run: npm run build
+    - name: Build Angular app
+      run: npm run build --prod
 
-    - name: Run tests
-      working-directory: ./frontend/ProEventos-App
-      run: npm run test
+    - name: Run Angular tests
+      run: npm run test --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+      
+    - name: Code Lint
+      run: npm run lint
