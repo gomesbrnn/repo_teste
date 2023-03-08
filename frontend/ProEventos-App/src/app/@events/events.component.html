@@ -1,0 +1,55 @@
+<br>
+<div class="container">
+  <h2>Events</h2>
+  <hr>
+
+  <form action="" class="form-inline">
+    <div class="form-group mb-2">
+      <label class="mr-2">Filter: </label>
+      <input type="text" class="form-control mr-2" placeholder="Search" [(ngModel)]="listFilter" name="filter">
+    </div>
+  </form>
+
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>
+          <button type="button" class="btn btn-outline-light btn-sm" (click)="changeImageStatus()">
+            {{!displayImage ? 'show' : 'hide'}}</button>
+        </th>
+        <th>#</th>
+        <th>Theme</th>
+        <th>City</th>
+        <th>Date</th>
+        <th>Amount People</th>
+        <th>Lot</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="events && events.length">
+      <tr *ngFor="let evento of filteredEvents">
+        <td>
+          <img [collapse]="displayImage" [isAnimated]="true" src="/assets/{{evento.imageURL}}">
+        </td>
+        <td>{{evento.id}}</td>
+        <td>{{evento.theme}}</td>
+        <td>{{evento.city}}</td>
+        <td>{{evento.date}}</td>
+        <td>{{evento.amountPeople}}</td>
+        <td>{{evento.lot}}</td>
+        <td>
+          <a class="btn btn-outline-success btn-sm" href="">Update</a>
+          <a class="btn btn-outline-danger btn-sm" href="">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!events.length">
+      <tr>
+        <td colspan="8" class="text-center">
+          <h4>No events found!</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+</div>

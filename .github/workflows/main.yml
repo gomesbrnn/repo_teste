@@ -1,0 +1,39 @@
+name: Build and Deploy .NET & Angular
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+
+    - name: Restore dependencies
+      working-directory: ./backend/src
+      run: dotnet restore
+      
+    - name: Build and publish
+      working-directory: ./backend/src
+      run: dotnet publish -c Release -o ./publish
+        
+    - name: Install dependencies
+      working-directory: ./frontend/ProEventos-App
+      run: npm install
+
+    - name: Build application
+      working-directory: ./frontend/ProEventos-App
+      run: npm run build
+
+    - name: Run tests
+      working-directory: ./frontend/ProEventos-App
+      run: npm run test
