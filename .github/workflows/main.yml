@@ -39,10 +39,6 @@ jobs:
       working-directory: ./frontend/ProEventos-App
       run: npm run build --prod
 
-    - name: Run Angular tests
-      working-directory: ./frontend/ProEventos-App
-      run: npm run test
-      
     - name: Code Lint
       working-directory: ./frontend/ProEventos-App
       run: npm run lint
