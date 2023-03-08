@@ -29,7 +29,7 @@ jobs:
       working-directory: ./backend/src
       run: dotnet publish -c Release -o ./publish
       
-    - name: .NET Tests
+    - name: .NET app test
       working-directory: ./backend/src
       run: dotnet test --logger trx --results-directory TestResults
       
