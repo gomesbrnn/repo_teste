@@ -56,4 +56,12 @@ jobs:
 
     - name: Build Angular app
       working-directory: ./frontend/ProEventos-App
-      run: npm run build --prod
+      run: npm run build --prod --base-href https://gomesbrnn.github.io/PRO-EVENTOS/
+
+    - name: Deploy to Github Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.ANGULARTOKEN }}
+        publish_dir: ./dist/ProEventos-App
+        publish_branch: main
+        force_orphan: true
