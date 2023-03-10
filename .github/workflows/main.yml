@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Angular app
       working-directory: ./frontend/ProEventos-App
-      run: npm run build --prod --base-href=https://gomesbrnn.github.io/repo_teste
+      run: npm run build --prod --base-href="https://gomesbrnn.github.io/repo_teste"
 
     - name: Deploy to Github Pages
       uses: peaceiris/actions-gh-pages@v3
