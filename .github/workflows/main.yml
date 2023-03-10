@@ -26,4 +26,4 @@ jobs:
         with:
           token: ${{ secrets.ANGULARTOKEN }}
           branch: gh-pages # The branch the action should deploy to.
-          folder: ./dist/ProEventos-App # The folder the action should deploy.
+          folder: /dist/ProEventos-App # The folder the action should deploy.
