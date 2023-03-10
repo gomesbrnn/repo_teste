@@ -15,35 +15,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-      
-    - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '5.0.x'
-
-    - name: Restore .NET dependencies
-      working-directory: ./backend/src
-      run: dotnet restore
-      
-    - name: Build and publish .NET app
-      working-directory: ./backend/src
-      run: dotnet publish -c Release -o ./publish
-      
-    - name: .NET app test
-      working-directory: ./backend/src
-      run: dotnet test --logger trx --results-directory TestResults
-      
-    - name: Publish test artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-results
-        path: TestResults/
-        
-    - name: Upload test coverage report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: coverage/
         
     - name: Setup Node.js
       uses: actions/setup-node@v3
@@ -62,6 +33,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.ANGULARTOKEN }}
-        publish_dir: ./docs/ProEventos-App
+        publish_dir: ./dist/ProEventos-App
         publish_branch: gh-pages
-        force_orphan: true
