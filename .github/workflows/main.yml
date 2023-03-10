@@ -62,6 +62,6 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.ANGULARTOKEN }}
-        publish_dir: ./dist/ProEventos-App
+        publish_dir: ./docs/ProEventos-App
         publish_branch: gh-pages
         force_orphan: true
